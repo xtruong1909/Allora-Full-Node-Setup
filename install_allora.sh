@@ -8,6 +8,8 @@ BRIGHT_GREEN="\033[1;32m"   # Bright Green for success messages
 MAGENTA="\033[1;35m"        # Magenta for titles
 RESET="\033[0m"             # Reset to default color
 
+USER="xtr"
+
 echo -e "${MAGENTA}Starting installation...${RESET}"
 
 # Update and install necessary dependencies
@@ -45,12 +47,13 @@ cd allora-chain
 # Replace requirements.txt with docker-compose.yaml
 echo -e "${LIGHT_BLUE}Replace with the new docker-compose.yaml...${RESET}"
 rm -rf docker-compose.yaml
-wget -q https://raw.githubusercontent.com/0xtnpxsgt/Allora-Full-Node-Setup/main/docker-compose.yaml -O /root/allora-chain/docker-compose.yaml
+wget -q https://raw.githubusercontent.com/0xtnpxsgt/Allora-Full-Node-Setup/main/docker-compose.yaml -O /home/$USER/allora-chain/docker-compose.yaml
 
 # Pull and start Docker containers
 echo -e "${LIGHT_BLUE}Pulling Docker images and starting containers...${RESET}"
 docker compose pull
 docker compose up -d
 
+# Display completion message
 echo -e "${BRIGHT_GREEN}Installation complete!${RESET}"
 echo -e "Run ${BOLD}docker compose logs -f${RESET} to check logs."
